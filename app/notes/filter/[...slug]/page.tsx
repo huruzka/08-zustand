@@ -6,6 +6,48 @@ import {
 } from '@tanstack/react-query';
 import NotesClient from './Notes.client';
 
+// Типизируем `params` как Promise
+interface NoteDetailsPageProps {
+    params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: NoteDetailsPageProps ) {
+  const { slug } = await params;
+  const rawTag = slug?.[0];
+  const tag = rawTag && rawTag !== "All" ? rawTag : "All";
+  const title = `Notes – ${tag} | NoteHub`;
+    const description =
+        tag === "All"
+            ? "Browse all your NoteHub notes."
+            : `Browse your NoteHub notes filtered by tag: ${tag}.`;
+  return {
+    title: `Note: ${title}`,
+    description,
+    openGraph: {
+      title: `Note: ${title}`,
+      description,
+      url: `https://notehub.com/notes`,
+      siteName: 'NoteHub',
+      images: [
+        {
+          url: 'https://placehold.co/1200x630',
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${title}`,
+      description,
+      images: ['https://ac.goit.global/fullstack/react/og-meta.jpg'],
+    },
+  }
+}
+
+
 interface NotePageProps{
   params: Promise<{ slug?: string[] }>;
 }

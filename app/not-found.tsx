@@ -7,11 +7,6 @@ export const metadata: Metadata = {
   description: 'This pade is not-found, please come back to Home page or try again later',
 };
 
-const NotFoundPage = () => {
-  return <div>EditProfile</div>;
-};
-
-
 const NotFound = () => {
   return (
     <div>
