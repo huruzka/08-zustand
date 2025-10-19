@@ -19,7 +19,7 @@ export default function Default() {
                     const href = `/notes/filter/${tag}`;
                     const isActive = tag === "All"; // На "порожньому" стані вважаємо активним All
                     return (
-                        <li key={tag} className={css.menuItem}>
+                                            <li key={tag} className={css.menuItem}>
                             <Link
                                 href={href}
                                 className={`${css.menuLink} ${isActive ? "active" : ""}`}

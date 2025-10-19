@@ -5,6 +5,7 @@ import css from './Notes.module.css';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useDebounce } from 'use-debounce';
+import Link from 'next/link';
 
 import { fetchNotes } from '@/lib/api';
 import Modal from '@/components/Modal/Modal';
@@ -35,7 +36,7 @@ const NotesClient = ({tag}:{tag:string})=> {
     setPage(e.selected + 1);
   };
 
-  const openModal = (): void => setIsModalOpen(true);
+
   const closeModal = (): void => setIsModalOpen(false);
 
   const handleCreated = () => {
@@ -56,9 +57,9 @@ const NotesClient = ({tag}:{tag:string})=> {
             onPageChange={handlePageClick}
           />
         )}
-        <button className={css.button} onClick={openModal}>
-          Create note +
-        </button>
+        <Link href="/notes/action/create" className={css.button}>
+                    Create note +
+                </Link>
       </header>
 
       <main>
