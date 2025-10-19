@@ -5,6 +5,7 @@ import {
   QueryClient,
 } from '@tanstack/react-query';
 import NotesClient from './Notes.client';
+import { Metadata } from "next";
 
 // Типизируем `params` как Promise
 interface NoteDetailsPageProps {
