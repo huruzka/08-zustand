@@ -2,7 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
-import { fetchNoteById } from "@/lib/api";
+import { fetchSingleNote } from "@/lib/api";
 import css from "./NoteDetails.client.module.css";
 
 const NoteDetailsClient = () => {
@@ -21,7 +21,7 @@ const NoteDetailsClient = () => {
             if (!id) {
                 throw new Error("Note ID is not available");
             }
-            return fetchNoteById(id);
+            return fetchSingleNote(id);
         },
         // Этот ключ предотвращает выполнение запроса, если id отсутствует.
         enabled: !!id,
