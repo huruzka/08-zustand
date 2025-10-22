@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Not-Found Page',
-  description: 'This pade is not-found, please come back to Home page or try again later',
+  description: 'This page is not found, please come back to Home page or try again later',
 };
 
 const NotFound = () => {

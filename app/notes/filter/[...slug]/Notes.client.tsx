@@ -8,8 +8,6 @@ import { useDebounce } from 'use-debounce';
 import Link from 'next/link';
 
 import { fetchNotes } from '@/lib/api';
-import Modal from '@/components/Modal/Modal';
-import NoteForm from '@/components/NoteForm/NoteForm';
 import Loader from '@/components/Loader/Loader';
 import NoteList from '@/components/NoteList/NoteList';
 import Pagination from '@/components/Pagination/Pagination';
@@ -18,7 +16,6 @@ import SearchBox from '@/components/SearchBox/SearchBox';
 const NotesClient = ({tag}:{tag:string})=> {
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [debouncedQuery] = useDebounce(searchQuery, 500);
 
   useEffect(() => {
@@ -36,12 +33,6 @@ const NotesClient = ({tag}:{tag:string})=> {
     setPage(e.selected + 1);
   };
 
-
-  const closeModal = (): void => setIsModalOpen(false);
-
-  const handleCreated = () => {
-    toast.success('Note created');
-  };
   const handleDeleted = () => {
     toast.success('Note deleted');
   };
@@ -69,9 +60,6 @@ const NotesClient = ({tag}:{tag:string})=> {
         )}
       </main>
 
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <NoteForm onCancel={closeModal} onCreated={handleCreated} />
-      </Modal>
     </div>
   );
 }

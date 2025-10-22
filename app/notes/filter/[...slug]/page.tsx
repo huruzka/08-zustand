@@ -7,12 +7,7 @@ import {
 import NotesClient from './Notes.client';
 import { Metadata } from "next";
 
-// Типизируем `params` как Promise
-interface NoteDetailsPageProps {
-    params: Promise<{ slug: string }>;
-}
-
-export async function generateMetadata({ params }: NoteDetailsPageProps ) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }>; }):Promise<Metadata> {
   const { slug } = await params;
   const rawTag = slug?.[0];
   const tag = rawTag && rawTag !== "All" ? rawTag : "All";
@@ -27,7 +22,7 @@ export async function generateMetadata({ params }: NoteDetailsPageProps ) {
     openGraph: {
       title: `Note: ${title}`,
       description,
-      url: `https://notehub.com/notes`,
+      url: `https://notehub.com/notes/filter/${tag}`,
       siteName: 'NoteHub',
       images: [
         {
